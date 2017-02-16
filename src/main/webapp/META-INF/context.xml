@@ -4,4 +4,4 @@
           username="root"
           password="root"
           driverClassName="com.mysql.jdbc.Driver"
-          url="jdbc:mysql://localhost:3306/carArend"/>
+          url="jdbc:mysql://localhost:3306/carArend;create=true"/>

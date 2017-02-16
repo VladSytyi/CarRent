@@ -1,5 +1,6 @@
 package com.art.utils;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -14,10 +15,10 @@ public class ConnectionPool {
     private static DataSource dataSource;
 
     static {
-        InitialContext initContext = null;
         try {
-            initContext = new InitialContext();
-            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/dbconnect");
+            Context context = new InitialContext();
+            Context envContext = (Context) context.lookup("java:comp/env");
+            dataSource = (DataSource) envContext.lookup("jdbc/VladServerApp");
         } catch (NamingException e) {
             e.printStackTrace();
         }

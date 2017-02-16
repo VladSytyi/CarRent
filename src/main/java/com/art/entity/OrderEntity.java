@@ -1,4 +1,4 @@
-package main.java.com.art.entity;
+package com.art.entity;
 
 import sun.util.calendar.LocalGregorianCalendar.Date;
 
