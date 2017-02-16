@@ -23,3 +23,6 @@ CREATE TABLE auto_order(
   FOREIGN KEY (auto_id) REFERENCES auto(auto_id),
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
+
+
+

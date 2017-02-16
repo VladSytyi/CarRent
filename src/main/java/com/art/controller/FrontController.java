@@ -1,4 +1,4 @@
-package com.art.controller;
+package main.java.com.art.controller;
 
 /**
  * Created by user on 15.02.2017.
