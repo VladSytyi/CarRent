@@ -1,4 +1,4 @@
-package com.art.entity;
+package main.java.com.art.entity;
 
 import sun.util.calendar.LocalGregorianCalendar.Date;
 
@@ -74,7 +74,6 @@ public class OrderEntity {
         this.clientDataEntity = clientDataEntity;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -90,7 +89,7 @@ public class OrderEntity {
 
     }
 
-    @Override
+
     public int hashCode() {
         int result = orderId;
         result = 31 * result + startArend.hashCode();
@@ -102,7 +101,7 @@ public class OrderEntity {
     }
 
 
-    @Override
+
     public String toString() {
         return "OrderEntity{" +
                 "orderId=" + orderId +

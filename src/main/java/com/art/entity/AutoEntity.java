@@ -1,4 +1,4 @@
-package com.art.entity;
+package main.java.com.art.entity;
 
 import java.io.Serializable;
 
@@ -44,7 +44,7 @@ public class AutoEntity implements Serializable {
         this.description = description;
     }
 
-    @Override
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -57,7 +57,6 @@ public class AutoEntity implements Serializable {
 
     }
 
-    @Override
     public int hashCode() {
         int result = autoID;
         result = 31 * result + autoTitle.hashCode();
@@ -65,7 +64,7 @@ public class AutoEntity implements Serializable {
         return result;
     }
 
-    @Override
+
     public String toString() {
         return "AutoEntity{" +
                 "autoID=" + autoID +
