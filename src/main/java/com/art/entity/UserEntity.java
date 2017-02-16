@@ -1,4 +1,4 @@
-package com.art.entity;
+package main.java.com.art.entity;
 import java.io.Serializable;
 import java.lang.Enum;
 /**
