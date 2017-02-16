@@ -5,4 +5,6 @@ package main.java.com.art.dao;
  */
 public interface Dao {
 
+
+
 }
