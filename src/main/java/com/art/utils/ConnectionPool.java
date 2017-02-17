@@ -1,31 +1,54 @@
 package com.art.utils;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.apache.commons.dbcp.BasicDataSource;
+
+import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by user on 15.02.2017.
  */
 public class ConnectionPool {
 
-    private static DataSource dataSource;
+    private static ConnectionPool connectionPool;
+    private BasicDataSource dataSource;
+    private Properties properties;
+    private static final String FILE_PATH = "/path.properties";
 
-    static {
+    private ConnectionPool() throws IOException, SQLException, PropertyVetoException {
+        properties = new Properties();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_PATH);
         try {
-            Context context = new InitialContext();
-            Context envContext = (Context) context.lookup("java:comp/env");
-            dataSource = (DataSource) envContext.lookup("jdbc/VladServerApp");
-        } catch (NamingException e) {
+            properties.load(inputStream);
+        } catch (IOException e) {
             e.printStackTrace();
+        }
+        dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(properties.getProperty("db_driver_class"));
+        dataSource.setUsername(properties.getProperty("db_login"));
+        dataSource.setPassword(properties.getProperty("db_pass"));
+        dataSource.setUrl(properties.getProperty("db_url"));
+        dataSource.setMinIdle(5);
+        dataSource.setMaxIdle(20);
+        dataSource.setMaxOpenPreparedStatements(180);
+
+    }
+
+    public static ConnectionPool getInstance() throws IOException, SQLException, PropertyVetoException {
+        if (connectionPool == null) {
+            connectionPool = new ConnectionPool();
+            return connectionPool;
+        } else {
+            return connectionPool;
         }
     }
 
-    public static Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+    public Connection getConnection() throws SQLException {
+        return this.dataSource.getConnection();
     }
 
 }
