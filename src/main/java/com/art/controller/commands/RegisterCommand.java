@@ -10,14 +10,9 @@ import com.art.service.impl.UserServiceImpl;
 public class RegisterCommand extends FrontCommand {
 
     private UserService userService;
-    //private String path = properties.getProperty("index");
 
 
     public void process() {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        userService = new UserServiceImpl();
-        userService.registerUser(username, password);
-       // forward(path);
+
     }
 }

@@ -49,7 +49,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public UserEntity getUserByUsername(String username) {
-        Connection connection = null;
         UserEntity userEntity = new UserEntity();
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -73,7 +72,4 @@ public class UserDaoImpl implements UserDao {
         return userEntity;
     }
 
-    public boolean ifUserExist(UserEntity userEntity) {
-        return false;
-    }
 }

@@ -7,5 +7,5 @@ import com.art.entity.UserEntity;
  */
 public interface UserService {
     void registerUser(String username, String password);
-    boolean isUserExist(String username);
+    UserEntity login(String login, String password);
 }

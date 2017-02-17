@@ -7,5 +7,4 @@ import com.art.entity.UserEntity;
  */
 public interface UserDao extends Dao<UserEntity> {
     UserEntity getUserByUsername(String username);
-    boolean ifUserExist(UserEntity userEntity);
 }

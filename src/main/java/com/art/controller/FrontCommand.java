@@ -27,7 +27,7 @@ public abstract class FrontCommand {
         this.servletContext = servletContext;
         this.request = request;
         this.response = response;
-       // initProperties();
+        initProperties();
     }
 
     protected void forward(String pagePath){

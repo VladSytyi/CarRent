@@ -23,7 +23,13 @@ public class UserServiceImpl implements UserService{
         userDao.create(userEntity);
     }
 
-    public boolean isUserExist(String username) {
-        return false;
+    public UserEntity login(String username, String password) {
+        userDao = new UserDaoImpl();
+        userEntity = userDao.getUserByUsername(username);
+        if(password.equals(userEntity.getPassword())){
+            return userEntity;
+        }
+        System.out.println("User with username: " + username + " and password: " + password + " or password is incorrect");
+        return null;
     }
 }
