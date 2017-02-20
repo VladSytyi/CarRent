@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
                             <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
                         <input type="submit" class="btn btn-default" value="Sign in" name="Sign in"/>
-                        <a href="/front-end/pages/register.html" class="btn btn-link">Sign up</a>
+                        <a href="/front-end/pages/register.jsp" class="btn btn-link">Sign up</a>
                     </form>
                 </div>
                 <div id="inner-container" class="col-12">
@@ -39,11 +39,11 @@
                 </div>
             </div>
         <div>
-            <footer>
-                <p>&copy; 2017 Auto-rent.com</p>
-            </footer>
         </div>
         </div>
     </div>
+    <footer>
+        <p>&copy; 2017 Auto-rent.com</p>
+    </footer>
 </body>
 </html>

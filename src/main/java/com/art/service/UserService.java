@@ -8,4 +8,5 @@ import com.art.entity.UserEntity;
 public interface UserService {
     void registerUser(String username, String password);
     UserEntity login(String login, String password);
+
 }

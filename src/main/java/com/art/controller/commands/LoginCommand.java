@@ -14,11 +14,12 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginCommand extends FrontCommand{
 
-    private UserService userService;
+    private UserServiceImpl userService;
     private UserEntity userEntity;
     private String username;
     private String password;
     private HttpSession session;
+
 
 
     public void process() {
@@ -34,6 +35,8 @@ public class LoginCommand extends FrontCommand{
                 if(userEntity.getRole() == Role.ADMIN){
                     forward(properties.getProperty("login_admin"));
                 }
+                request.setAttribute("username", userEntity.getUsername());
+                request.setAttribute("autos", userService.showAllAutos());
                 forward(properties.getProperty("login_user"));
             }else{
                 forward(properties.getProperty("index"));

@@ -36,8 +36,42 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+
     public UserEntity read(int id) {
-        return null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            String query = "SELECT * FROM user WHERE user_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        }
+
+        return getResult(resultSet);
+    }
+
+    public UserEntity getUserByUsername(String username) {
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            String query = "SELECT * FROM user WHERE username = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,username);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return getResult(resultSet);
     }
 
     public void update(UserEntity userEntity) {
@@ -48,14 +82,9 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    public UserEntity getUserByUsername(String username) {
+    private UserEntity getResult(ResultSet resultSet){
         UserEntity userEntity = new UserEntity();
         try {
-            connection = ConnectionPool.getInstance().getConnection();
-            String query = "SELECT * FROM user WHERE username = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1,username);
-            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 userEntity.setUserId(Integer.valueOf(resultSet.getString("user_id")));
                 userEntity.setRole(Enum.valueOf(Role.class, resultSet.getString("role")));
@@ -63,10 +92,6 @@ public class UserDaoImpl implements UserDao {
                 userEntity.setPassword(resultSet.getString("password"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
         return userEntity;

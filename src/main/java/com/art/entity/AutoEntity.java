@@ -7,25 +7,45 @@ import java.io.Serializable;
  */
 public class AutoEntity implements Serializable {
 
-    private int autoID;
+    private int autoId;
     private String autoTitle;
     private String description;
+    private String imageLink;
+    private int userId;
 
     public AutoEntity() {
     }
 
-    public AutoEntity(int autoID, String autoTitle, String description) {
-        this.autoID = autoID;
+    public AutoEntity(int autoId, String autoTitle, String description, String imageLink, int userId) {
+        this.autoId = autoId;
         this.autoTitle = autoTitle;
         this.description = description;
+        this.imageLink = imageLink;
+        this.userId = userId;
     }
 
-    public int getAutoID() {
-        return autoID;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setAutoID(int autoID) {
-        this.autoID = autoID;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getAutoId() {
+        return autoId;
+    }
+
+    public void setAutoId(int autoId) {
+        this.autoId = autoId;
     }
 
     public String getAutoTitle() {
@@ -51,14 +71,14 @@ public class AutoEntity implements Serializable {
 
         AutoEntity that = (AutoEntity) o;
 
-        if (autoID != that.autoID) return false;
+        if (autoId != that.autoId) return false;
         if (!autoTitle.equals(that.autoTitle)) return false;
         return description != null ? description.equals(that.description) : that.description == null;
 
     }
 
     public int hashCode() {
-        int result = autoID;
+        int result = autoId;
         result = 31 * result + autoTitle.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
@@ -67,7 +87,7 @@ public class AutoEntity implements Serializable {
 
     public String toString() {
         return "AutoEntity{" +
-                "autoID=" + autoID +
+                "autoId=" + autoId +
                 ", autoTitle='" + autoTitle + '\'' +
                 ", description='" + description + '\'' +
                 '}';

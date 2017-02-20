@@ -6,6 +6,8 @@ import com.art.service.UserService;
 import com.art.service.impl.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by user on 16.02.2017.
  */

@@ -1,6 +1,7 @@
 package com.art.controller.commands;
 
 import com.art.controller.FrontCommand;
+import com.art.entity.Role;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +13,7 @@ public class LogoutCommand extends FrontCommand {
 
     public void process() {
         session = request.getSession();
-        session.setAttribute("userId", null);
+        session.invalidate();
         forward(properties.getProperty("index"));
     }
 }
