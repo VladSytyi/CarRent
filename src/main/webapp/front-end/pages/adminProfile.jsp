@@ -11,12 +11,36 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-
+                <h2>Users</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${users}" var="user">
+                            <tr>
+                                <th>${user.userId}</th>
+                                <th>${user.username}</th>
+                                <th>${user.password}</th>
+                                <th>${user.role}</th>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
             <div class="col-6">
 
             </div>
         </div>
+        <form method="get" action="/rest">
+            <input type="hidden" name="Command" value="Logout">
+            <input type="submit" class="btn btn-default" value="Logout" name="Logout"/>
+        </form>
     </div>
 </body>
 </html>

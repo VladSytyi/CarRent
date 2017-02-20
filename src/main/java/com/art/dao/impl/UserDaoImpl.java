@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by user on 16.02.2017.
@@ -76,6 +78,31 @@ public class UserDaoImpl implements UserDao {
 
     public void update(UserEntity userEntity) {
 
+    }
+
+    public List<UserEntity> showAllUsers() {
+        List<UserEntity> allUsers = new ArrayList<UserEntity>();
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            String query = "SELECT * FROM user";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                UserEntity userEntity = new UserEntity();
+                userEntity.setUserId(Integer.valueOf(resultSet.getString("user_id")));
+                userEntity.setRole(Enum.valueOf(Role.class, resultSet.getString("role")));
+                userEntity.setUsername(resultSet.getString("username"));
+                userEntity.setPassword(resultSet.getString("password"));
+                allUsers.add(userEntity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        }
+        return allUsers;
     }
 
     public void delete(UserEntity userEntity) {

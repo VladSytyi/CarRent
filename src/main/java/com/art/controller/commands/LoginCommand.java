@@ -33,6 +33,7 @@ public class LoginCommand extends FrontCommand{
                 session = request.getSession();
                 session.setAttribute("userId", userEntity.getUserId());
                 if(userEntity.getRole() == Role.ADMIN){
+                    request.setAttribute("users", userService.showAllUsers());
                     forward(properties.getProperty("login_admin"));
                 }
                 request.setAttribute("username", userEntity.getUsername());

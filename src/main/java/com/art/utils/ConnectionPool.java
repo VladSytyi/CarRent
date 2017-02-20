@@ -32,8 +32,8 @@ public class ConnectionPool {
         dataSource.setUsername(properties.getProperty("db_login"));
         dataSource.setPassword(properties.getProperty("db_pass"));
         dataSource.setUrl(properties.getProperty("db_url"));
-        dataSource.setMinIdle(5);
-        dataSource.setMaxIdle(20);
+        dataSource.setMinIdle(15);
+        dataSource.setMaxIdle(60);
         dataSource.setMaxOpenPreparedStatements(180);
 
     }

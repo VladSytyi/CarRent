@@ -20,9 +20,13 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
     private AutoDao autoDao;
 
+    public UserServiceImpl(){
+        this.userDao = new UserDaoImpl();
+        this.autoDao = new AutoDaoImpl();
+    }
+
     public void registerUser(String username, String password) {
         userEntity = new UserEntity();
-        userDao = new UserDaoImpl();
         userEntity.setUsername(username);
         userEntity.setPassword(password);
         userEntity.setRole(Role.USER);
@@ -30,7 +34,6 @@ public class UserServiceImpl implements UserService{
     }
 
     public UserEntity login(String username, String password) {
-        userDao = new UserDaoImpl();
         userEntity = userDao.getUserByUsername(username);
         if(password.equals(userEntity.getPassword())){
             return userEntity;
@@ -39,8 +42,11 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
+    public List<UserEntity> showAllUsers(){
+        return userDao.showAllUsers();
+    }
+
     public List<AutoEntity> showAllAutos(){
-        autoDao = new AutoDaoImpl();
         return autoDao.getAllAutos();
     }
 }
